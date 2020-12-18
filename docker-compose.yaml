@@ -1,0 +1,10 @@
+version: '3'
+services:
+  tri_ad:
+    image: rub21/tri_ad:v1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+        - ./:/tri_ad
+    working_dir: /tri_ad
