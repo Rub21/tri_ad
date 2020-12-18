@@ -1,4 +1,4 @@
-"""Script  to read a file and return X large number of items.
+"""Script to read a file and return X large number of records.
 Author: @Rub21
 Run:
     python main.py \
@@ -9,7 +9,8 @@ Run:
 import click
 from smart_open import open
 
-CHUNK_SIZE = 100  # This value can be set up according to the hardware Memory configuration
+# This value can be set up according to the hardware memory configuration, it for reading extremely large files
+CHUNK_SIZE = 100
 
 
 def sort_tuples(list_tuples, large_numbers):
@@ -33,12 +34,12 @@ def read_file_sort(file_path, large_numbers):
     Returns:
         List of tuples
     """
-    # Check in input type for large_numbers
+    # Check input type for large_numbers
     if type(large_numbers) not in [int]:
-        raise TypeError("The large_numbers  must be integer")
+        raise TypeError("The large_numbers must be integer.")
     # Check value for large_numbers
     if large_numbers <= 0:
-        raise ValueError("The large_numbers can not be negative or 0")
+        raise ValueError("The large_numbers can not be negative or 0.")
 
     bunch = []
 
@@ -55,19 +56,21 @@ def read_file_sort(file_path, large_numbers):
                         bunch = sort_tuples(bunch, large_numbers)
             bunch = sort_tuples(bunch, large_numbers)
     except FileNotFoundError as err:
-        raise ValueError("File does not exist")
+        raise ValueError("File does not exist.")
     except IOError as err:
-        raise ValueError("File does not in the url")
+        raise ValueError("The file in the URL does not exist.")
     if len(bunch) == 0:
-        raise ValueError("Empty file or contain less than 499 bytes")
+        raise ValueError("Empty file or  the file contain less than 499 bytes.")
     return bunch
 
 
-@click.command(short_help="Description comes here")
+@click.command(
+    short_help="Script to read a file and return X large number of records."
+)
 @click.option(
     "-f",
     "--file_path",
-    help="Path to to a file, it can be a url or a local file",
+    help="Path to a file, it can be a url or a local file.",
     required=True,
     type=str,
     default="https://amp-spacemaps-technical-challenge.s3-ap-northeast-1.amazonaws.com/spacemaps_technical_challenge.txt",
@@ -75,7 +78,7 @@ def read_file_sort(file_path, large_numbers):
 @click.option(
     "-x",
     "--large_numbers",
-    help="Number of item to return tha contina large numbers",
+    help="Number of records to return that contains large numbers",
     required=True,
     type=int,
     default=20,
