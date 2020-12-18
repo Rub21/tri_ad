@@ -21,6 +21,10 @@ git clone clone git@github.com:Rub21/tri_ad.git
 cd tri_ad/
 docker-compose build
 ```
+Note: `docker-compose build` will execute the testing when it is building the container!
+
+<img width="580" alt="image" src="https://user-images.githubusercontent.com/1152236/102576469-9d7dcd80-40c3-11eb-8a68-a239a5d4a9cf.png">
+
 ## Usage
 
 ```sh
@@ -30,27 +34,24 @@ tri_ad --help
 - Executing the script in local and docker container
   
 ```sh
-# Runing the CLI from docker 
+# Ask for help sing docker
+docker run rub21/tri_ad:v1 --help
+
+# Runing the CLI from docker
 docker run rub21/tri_ad:v1 \
-  tri_ad \
     --file_path=https://amp-spacemaps-technical-challenge.s3-ap-northeast-1.amazonaws.com/spacemaps_technical_challenge.txt \
     --large_numbers=20
+
+
+# Ask for help in local env
+tri_ad --help
 
 # Runing the CLI from local
 tri_ad \
   --file_path=https://amp-spacemaps-technical-challenge.s3-ap-northeast-1.amazonaws.com/spacemaps_technical_challenge.txt \
   --large_numbers=2
 
-# Runing on docker-compose with default values
-
-docker-compose up
-
 ```
-
-By default `docker-compose up` will execute the script with the default values.
-
-- `file_path`: https://amp-spacemaps-technical-challenge.s3-ap-northeast-1.amazonaws.com/spacemaps_technical_challenge.txt
-- `large_numbers`:100
 
 ## Run tests
 

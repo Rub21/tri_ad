@@ -6,4 +6,4 @@ WORKDIR /mnt/scripts/
 COPY . .
 RUN python setup.py install
 RUN python -m unittest
-CMD ["tri_ad"]
+ENTRYPOINT ["tri_ad"]

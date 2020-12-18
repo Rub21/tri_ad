@@ -52,6 +52,9 @@ def read_file_sort(file_path, large_numbers):
                     key, value = line.split(" ")
                     value = int(value)
                     bunch.append((key, value))
+                    # Check the number of lines to read and once it achieve that number,
+                    # get the maximum x large numbers and set again the var “bunch” with the largest number. 
+                    # so  in that way it will reduce to overloaded on memory. 
                     if len(bunch) == CHUNK_SIZE:
                         bunch = sort_tuples(bunch, large_numbers)
             bunch = sort_tuples(bunch, large_numbers)
@@ -73,7 +76,7 @@ def read_file_sort(file_path, large_numbers):
     help="Path to a file, it can be a url or a local file.",
     required=True,
     type=str,
-    default="https://amp-spacemaps-technical-challenge.s3-ap-northeast-1.amazonaws.com/spacemaps_technical_challenge.txt",
+    # default="https://amp-spacemaps-technical-challenge.s3-ap-northeast-1.amazonaws.com/spacemaps_technical_challenge.txt",
 )
 @click.option(
     "-x",
@@ -81,7 +84,7 @@ def read_file_sort(file_path, large_numbers):
     help="Number of records to return that contains large numbers",
     required=True,
     type=int,
-    default=20,
+    # default=20,
 )
 def main(file_path, large_numbers):
     """Starting function"""
